@@ -12,6 +12,8 @@ export default defineConfig({
     lib: { entry: path.join(dirname, 'src/index.ts'), formats: ['es'], fileName: 'robur-ds' },
     rollupOptions: { external: [/^lit/] },
   },
+  // Si Vite descubre una dependencia a mitad de los tests, recarga y fallan todos: se declaran antes.
+  optimizeDeps: { include: ['lit', 'lit/decorators.js', 'lit/directives/*.js', 'storybook/test'] },
   // Cada story de Storybook se ejecuta como un test en un navegador real.
   test: {
     projects: [
