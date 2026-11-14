@@ -7,12 +7,15 @@
     "dev": "npm run storybook",
     "tokens": "node scripts/build-tokens.mjs",
     "cem": "cem analyze --config custom-elements-manifest.config.mjs",
-    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-figma.mjs",
+    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/build-catalog.mjs && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-patterns.mjs && node scripts/check-figma.mjs",
     "build": "npm run tokens && npm run cem && tsc && vite build",
     "storybook": "npm run tokens && npm run cem && storybook dev -p 6009",
     "build-storybook": "npm run tokens && npm run cem && storybook build",
     "test": "npm run check && vitest run",
-    "figma:tokens": "node scripts/figma-tokens.mjs"
+    "figma:tokens": "node scripts/figma-tokens.mjs",
+    "catalog": "npm run cem && node scripts/build-catalog.mjs",
+    "docs": "npm run cem && node scripts/build-docs.mjs && vitepress build site",
+    "docs:dev": "npm run cem && node scripts/build-docs.mjs && vitepress dev site"
   },
   "dependencies": {
     "lit": "^3.3.3"
@@ -29,6 +32,7 @@
     "storybook": "^10.6.7",
     "typescript": "~7.0.2",
     "vite": "^8.3.8",
+    "vitepress": "^1.6.4",
     "vitest": "^5.1.0"
   },
   "customElements": "custom-elements.json"

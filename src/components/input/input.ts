@@ -140,6 +140,7 @@ export class RoburInput extends LitElement {
         aria-describedby=${message ? 'message' : nothing}
         @input=${this.#onInput}
         @change=${this.#onChange}
+        @keydown=${this.#onKeyDown}
       />
       ${message ? html`<p id="message" class=${this.error ? 'error' : ''}>${message}</p>` : nothing}
     `
@@ -164,6 +165,11 @@ export class RoburInput extends LitElement {
   #onInput(event: Event) {
     // El evento `input` sale solo del Shadow DOM; antes de que llegue fuera, el valor ya está al día.
     this.value = (event.target as HTMLInputElement).value
+  }
+
+  /** Intro en un campo envía su formulario, como en un `<input>` nativo. Desde el Shadow DOM no lo hace solo. */
+  #onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' && !event.isComposing) this.#internals.form?.requestSubmit()
   }
 
   #onChange() {
