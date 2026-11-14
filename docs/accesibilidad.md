@@ -28,6 +28,18 @@ Objetivo: WCAG 2.2 nivel AA.
 4. **Zona pulsable.** 44 px de alto como mínimo en todos los controles.
 5. **Movimiento.** Con `prefers-reduced-motion` no hay animaciones.
 
+## Dentro del Shadow DOM
+
+Cada componente es una etiqueta `<robur-*>` con su propio Shadow DOM. axe entra en él y
+comprueba lo que de verdad se pinta, pero tres cosas se resuelven a propósito:
+
+| Qué | Por qué pide cuidado | Cómo se resuelve |
+|---|---|---|
+| Etiquetas de campo | `<label for>` y `aria-describedby` solo encuentran un `id` dentro de su mismo Shadow DOM | La etiqueta, el campo y el mensaje viven juntos dentro del componente |
+| Foco | El foco llega a la etiqueta de fuera, no al control de dentro | `delegatesFocus` lo pasa al control. El contorno de foco está en `src/styles/shared.ts`, porque el CSS de la página no entra |
+| Formularios | Un `<form>` no ve los controles de dentro de un Shadow DOM | `ElementInternals`: los campos entregan su valor y su validez al formulario, y `<robur-button type="submit">` lo envía |
+| Movimiento reducido | La regla de la página no entra | También está en `shared.ts`, que usan todos los componentes |
+
 ## Lo que los tests no cubren
 
 Hay que revisarlo a mano antes de dar un componente por bueno:
