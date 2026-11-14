@@ -25,7 +25,8 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
+            // Con movimiento reducido no hay transiciones: axe mide los colores finales, no uno a medias.
+            provider: playwright({ contextOptions: { reducedMotion: 'reduce' } }),
             instances: [{ browser: 'chromium' }],
           },
         },
