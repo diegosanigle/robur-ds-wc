@@ -14,8 +14,9 @@ Storybook: https://diegosanigle.github.io/robur-ds-wc/
 
 Figma: https://www.figma.com/design/lTMwgNScwy7MEq8CaafRGC (la misma librería que el resto de tecnologías)
 
-Estado: bloque 1. Tokens en dos temas como variables CSS, `<robur-button>` y `<robur-input>`
-con sus stories, y comprobación de contraste y de accesibilidad en `npm test`.
+Estado: bloque 2. Tokens en dos temas como variables CSS, 11 componentes con contrato y sus
+stories, y comprobaciones de contraste, contratos (props, eventos, slots y CSS), paridad con
+Figma y accesibilidad en `npm test`.
 
 Los tokens (`tokens/`), los contratos (`*.contract.json` y `*.pattern.json`), `evals/cases.json` y `figma/library.json` no se editan aquí: se cambian en `robur-ds-react` y se copian.
 

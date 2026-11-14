@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { html } from 'lit'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent } from 'storybook/test'
+import { inside } from '../../stories/shadow'
 import type { RoburButton } from './button'
 import './button'
 
@@ -56,8 +57,7 @@ export const FullWidth: Story = {
 export const Interaccion: Story = {
   play: async ({ canvasElement, args }) => {
     // El <button> vive dentro del Shadow DOM de <robur-button>: se busca ahí.
-    const host = canvasElement.querySelector('robur-button')!
-    const button = within(host.shadowRoot as unknown as HTMLElement).getByRole('button', { name: 'Guardar sesión' })
+    const button = inside(canvasElement, 'robur-button').getByRole('button', { name: 'Guardar sesión' })
     await userEvent.click(button)
     await expect(args.onClick).toHaveBeenCalledOnce()
   },

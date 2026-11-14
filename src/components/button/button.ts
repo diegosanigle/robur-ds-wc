@@ -50,11 +50,12 @@ export class RoburButton extends LitElement {
   static styles = [
     base,
     css`
+      /* La etiqueta es una caja flexible: si una fila la estira, el <button> de dentro la llena. */
       :host {
-        display: inline-block;
+        display: inline-flex;
       }
       :host([full-width]) {
-        display: block;
+        display: flex;
       }
       button {
         display: inline-flex;
@@ -62,7 +63,7 @@ export class RoburButton extends LitElement {
         align-items: center;
         justify-content: center;
         gap: calc(var(--spacing) * 2);
-        border: 1px solid transparent;
+        border: 0;
         border-radius: var(--radius-pill);
         padding: calc(var(--spacing) * 3.5) calc(var(--spacing) * 6);
         font-family: inherit;
@@ -91,14 +92,14 @@ export class RoburButton extends LitElement {
         color: var(--text-color-on-action);
       }
       .secondary {
+        border: 1px solid var(--border-color-strong);
         background-color: transparent;
         color: var(--text-color-primary);
-        border-color: var(--border-color-strong);
       }
       .danger {
+        border: 1px solid var(--border-color-danger);
         background-color: transparent;
         color: var(--text-color-danger);
-        border-color: var(--border-color-danger);
       }
     `,
   ]

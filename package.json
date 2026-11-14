@@ -7,11 +7,12 @@
     "dev": "npm run storybook",
     "tokens": "node scripts/build-tokens.mjs",
     "cem": "cem analyze --config custom-elements-manifest.config.mjs",
-    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/check-contrast.mjs",
+    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-figma.mjs",
     "build": "npm run tokens && npm run cem && tsc && vite build",
     "storybook": "npm run tokens && npm run cem && storybook dev -p 6009",
     "build-storybook": "npm run tokens && npm run cem && storybook build",
-    "test": "npm run check && vitest run"
+    "test": "npm run check && vitest run",
+    "figma:tokens": "node scripts/figma-tokens.mjs"
   },
   "dependencies": {
     "lit": "^3.3.3"

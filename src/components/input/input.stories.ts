@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite'
 import { html, nothing } from 'lit'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, userEvent } from 'storybook/test'
+import { inside } from '../../stories/shadow'
 import type { RoburInput } from './input'
 import './input'
 
@@ -44,7 +45,7 @@ export const Interaccion: Story = {
   play: async ({ canvasElement }) => {
     // La etiqueta y el campo viven dentro del Shadow DOM de <robur-input>: se buscan ahí.
     const host = canvasElement.querySelector('robur-input')!
-    const input = within(host.shadowRoot as unknown as HTMLElement).getByLabelText('Nombre del ejercicio')
+    const input = inside(canvasElement, 'robur-input').getByLabelText('Nombre del ejercicio')
     await userEvent.type(input, 'Sentadilla')
     await expect(input).toHaveValue('Sentadilla')
     // El valor también llega a la etiqueta, como en un <input> nativo.

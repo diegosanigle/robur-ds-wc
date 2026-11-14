@@ -36,24 +36,14 @@ export function reference(token, name) {
 /** Valor final (hex) de un token semántico en un tema. */
 export const resolve = (theme, name) => primitives[reference(themes[theme][name], name)].value
 
-// Tailwind crea las clases a partir del nombre de la variable:
-// --text-color-primary → text-primary, --background-color-surface → bg-surface.
+// Cada token semántico es una variable CSS. El grupo va en el nombre:
+// color.text.primary → --text-color-primary, color.bg.surface → --background-color-surface.
 const NAMESPACES = { text: '--text-color', bg: '--background-color', border: '--border-color' }
-const PREFIXES = { text: ['text'], bg: ['bg'], border: ['border'] }
-const ANY_COLOR = ['bg', 'text', 'border', 'outline', 'ring', 'fill', 'stroke']
 
 /** 'color.text.primary' → '--text-color-primary'; 'color.heat.2' → '--color-heat-2'. */
 export function cssVariable(name) {
   const [, group, ...rest] = name.split('.')
   return NAMESPACES[group] ? `${NAMESPACES[group]}-${rest.join('-')}` : `--color-${group}-${rest.join('-')}`
-}
-
-/** Clases de Tailwind con las que se usa un token de color. */
-export function colorClasses(name) {
-  const [, group, ...rest] = name.split('.')
-  return PREFIXES[group]
-    ? PREFIXES[group].map((p) => `${p}-${rest.join('-')}`)
-    : ANY_COLOR.map((p) => `${p}-${group}-${rest.join('-')}`)
 }
 
 export const primitiveVariable = (name) => `--${name.split('.').slice(name.startsWith('color.') ? 1 : 0).join('-')}`
