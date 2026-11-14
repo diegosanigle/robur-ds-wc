@@ -1,0 +1,23 @@
+/* Estilos de la página. Los componentes llevan su propio CSS dentro de su Shadow DOM
+   y solo leen las variables de tokens.css, que lo atraviesan. */
+@import "./tokens.css";
+
+body {
+  margin: 0;
+  background: var(--background-color-page);
+  color: var(--text-color-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
