@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-14",
+  "system": {
+    "components": 11,
+    "patterns": 3,
+    "semanticTokens": 36,
+    "primitiveColors": 31,
+    "textStyles": 9,
+    "themes": 2,
+    "stories": 58
+  },
+  "coverage": {
+    "contracts": 100,
+    "documentedProps": 100,
+    "figmaParity": 100,
+    "figmaSnapshotAgeDays": 3
+  },
+  "accessibility": {
+    "contrastPairs": 64,
+    "tightestPair": {
+      "pair": "bg.action sobre bg.surface",
+      "theme": "dark",
+      "margin": 1.03
+    }
+  },
+  "evals": null,
+  "app": null
+}

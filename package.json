@@ -7,7 +7,7 @@
     "dev": "npm run storybook",
     "tokens": "node scripts/build-tokens.mjs",
     "cem": "cem analyze --config custom-elements-manifest.config.mjs",
-    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/build-catalog.mjs && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-patterns.mjs && node scripts/check-figma.mjs",
+    "check": "node scripts/build-tokens.mjs && npm run cem && node scripts/build-catalog.mjs && node scripts/build-mcp-data.mjs && node scripts/check-contrast.mjs && node scripts/check-contracts.mjs && node scripts/check-patterns.mjs && node scripts/check-figma.mjs && node scripts/check-usage.mjs && node scripts/check-mcp.mjs && node scripts/check-evals.mjs",
     "build": "npm run tokens && npm run cem && tsc && vite build",
     "storybook": "npm run tokens && npm run cem && storybook dev -p 6009",
     "build-storybook": "npm run tokens && npm run cem && storybook build",
@@ -15,10 +15,16 @@
     "figma:tokens": "node scripts/figma-tokens.mjs",
     "catalog": "npm run cem && node scripts/build-catalog.mjs",
     "docs": "npm run cem && node scripts/build-docs.mjs && vitepress build site",
-    "docs:dev": "npm run cem && node scripts/build-docs.mjs && vitepress dev site"
+    "docs:dev": "npm run cem && node scripts/build-docs.mjs && vitepress dev site",
+    "mcp:data": "npm run cem && node scripts/build-mcp-data.mjs",
+    "mcp": "node scripts/check-mcp.mjs",
+    "evals": "node evals/run.mjs",
+    "metrics": "npm run cem && node scripts/metrics.mjs"
   },
   "dependencies": {
-    "lit": "^3.3.3"
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "lit": "^3.3.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
@@ -35,5 +41,8 @@
     "vitepress": "^1.6.4",
     "vitest": "^5.1.0"
   },
-  "customElements": "custom-elements.json"
+  "customElements": "custom-elements.json",
+  "bin": {
+    "robur-ds-mcp": "mcp/server.mjs"
+  }
 }

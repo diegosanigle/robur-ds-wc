@@ -15,9 +15,10 @@ Documentación: https://diegosanigle.github.io/robur-ds-wc/docs/
 
 Figma: https://www.figma.com/design/lTMwgNScwy7MEq8CaafRGC (la misma librería que el resto de tecnologías)
 
-Estado: bloque 3. Tokens en dos temas como variables CSS, 11 componentes y 3 patrones con
-contrato, reglas y skills para agentes, documentación generada, y comprobaciones de contraste,
-contratos (props, eventos, slots y CSS), patrones, paridad con Figma y accesibilidad en `npm test`.
+Estado: tokens en dos temas como variables CSS, 11 componentes y 3 patrones con contrato,
+reglas y skills para agentes, documentación generada, un MCP, evals y métricas, y
+comprobaciones de contraste, contratos (props, eventos, slots y CSS), patrones, paridad con
+Figma, uso y accesibilidad en `npm test`.
 
 Los tokens (`tokens/`), los contratos (`*.contract.json` y `*.pattern.json`), `evals/cases.json` y `figma/library.json` no se editan aquí: se cambian en `robur-ds-react` y se copian.
 
@@ -35,3 +36,17 @@ Los tokens (`tokens/`), los contratos (`*.contract.json` y `*.pattern.json`), `e
 
 `tokens.css` se carga una vez en la página: sus variables atraviesan el Shadow DOM de cada
 componente.
+
+## Usar el sistema desde otro proyecto
+
+Añade el MCP a la configuración de tu agente (en Claude Code, un fichero `.mcp.json` en la raíz del proyecto):
+
+```json
+{
+  "mcpServers": {
+    "robur-ds": { "command": "npx", "args": ["-y", "github:diegosanigle/robur-ds-wc"] }
+  }
+}
+```
+
+El agente tendrá cinco herramientas: `get_catalog`, `get_component`, `get_tokens`, `get_text_on` y `validate_code`.
