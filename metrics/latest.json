@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "system": {
     "components": 11,
     "patterns": 3,
@@ -13,7 +13,7 @@
     "contracts": 100,
     "documentedProps": 100,
     "figmaParity": 100,
-    "figmaSnapshotAgeDays": 3
+    "figmaSnapshotAgeDays": 4
   },
   "accessibility": {
     "contrastPairs": 64,
@@ -23,6 +23,19 @@
       "margin": 1.03
     }
   },
-  "evals": null,
+  "evals": {
+    "date": "2026-11-15",
+    "model": "sonnet",
+    "sin-sistema": {
+      "passed": 0,
+      "total": 6,
+      "rate": 0
+    },
+    "con-mcp": {
+      "passed": 6,
+      "total": 6,
+      "rate": 100
+    }
+  },
   "app": null
 }
