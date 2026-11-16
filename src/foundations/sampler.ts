@@ -8,6 +8,12 @@ const TABS = [
   { value: 'mes', label: 'Mes' },
 ]
 
+const YEAR = Array.from({ length: 52 }, (_, i) => ({ week: i + 1, sessions: (i * 7) % 5, current: i === 45 }))
+const DAYS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((label, i) => ({ label, name: `día ${i + 1}`, done: i % 3 === 0, current: i === 3 }))
+const BARS = [3, 1.5, 0, 2.5, 4, 2].map((value, i) => ({ label: String(40 + i), value }))
+const LINE = [20, 22.5, 22.5, 25, 27.5].map((value, i) => ({ label: `0${i + 1}-11`, value }))
+const OPTIONS = [{ value: 'press', label: 'Press de hombro' }]
+
 const style = html`<style>
   .ds-sampler { display: flex; flex-direction: column; gap: calc(var(--spacing) * 4); padding: calc(var(--spacing) * 5); background: var(--background-color-page); color: var(--text-color-primary); }
   .ds-sampler h2 { margin: 0; font-size: var(--text-h2); line-height: var(--text-h2--line-height); font-weight: var(--text-h2--font-weight); letter-spacing: var(--text-h2--letter-spacing); }
@@ -17,6 +23,7 @@ const style = html`<style>
   .ds-sampler .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--spacing) * 4); }
   .ds-sampler .heat { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: calc(var(--spacing) * 1); }
   .ds-sampler .row { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 2); }
+  .ds-sampler ul { margin: 0; padding: 0; }
 </style>`
 
 export const sampler = () => html`
@@ -38,6 +45,21 @@ export const sampler = () => html`
       <robur-heatmap-cell week="15" sessions="0" rest></robur-heatmap-cell>
       <robur-heatmap-cell week="16" sessions="2" current></robur-heatmap-cell>
     </div>
+    <robur-heatmap-year year="2026" .weeks=${YEAR}></robur-heatmap-year>
+    <robur-card variant="inverse"><robur-week-strip .days=${DAYS}></robur-week-strip></robur-card>
+    <robur-bar-chart title="Volumen semanal" .data=${BARS}></robur-bar-chart>
+    <robur-line-chart variant="inverse" title="Press de hombro, peso (kg)" .data=${LINE}></robur-line-chart>
+    <ul>
+      <robur-list-row title="Empuje" detail="Lun 9 nov · 6 ejercicios" @select=${() => {}}></robur-list-row>
+      <robur-list-row title="Press de hombro" detail="3 × 12"><robur-button variant="text">Quitar</robur-button></robur-list-row>
+      <robur-list-row title="Pierna" value="12"></robur-list-row>
+    </ul>
+    <robur-select label="Ejercicio" placeholder="Elige un ejercicio" .options=${OPTIONS}></robur-select>
+    <div class="row">
+      <robur-icon name="home" size="lg"></robur-icon>
+      <robur-icon name="plus" size="lg"></robur-icon>
+      <robur-icon name="check" size="lg"></robur-icon>
+    </div>
     <div class="row">
       <robur-chip selected>Empuje</robur-chip>
       <robur-chip>Tirón</robur-chip>
@@ -55,6 +77,7 @@ export const sampler = () => html`
       <robur-button>Guardar sesión</robur-button>
       <robur-button variant="secondary">Cancelar</robur-button>
       <robur-button variant="danger">Borrar sesión</robur-button>
+      <robur-button variant="text">Añadir ejercicio</robur-button>
     </div>
   </div>
 `

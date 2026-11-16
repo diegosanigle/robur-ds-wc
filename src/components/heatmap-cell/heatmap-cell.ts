@@ -14,8 +14,10 @@ export class RoburHeatmapCell extends LitElement {
 
   /** Número de semana ISO, del 1 al 53. */
   @property({ type: Number }) week!: number
-  /** Sesiones registradas esa semana. Decide el nivel de color. */
+  /** Sesiones registradas esa semana. Las anuncia la celda y, si no se pasa level, deciden el color. */
   @property({ type: Number }) sessions!: number
+  /** Nivel de color, del 0 al 4, cuando lo calcula la app (por ejemplo, con sesiones ponderadas). */
+  @property({ type: Number }) level?: number
   /** Semana marcada como descanso: se distingue por el borde discontinuo, no por un color. */
   @property({ type: Boolean, reflect: true }) rest = false
   /** Es la semana en curso. */
@@ -74,7 +76,7 @@ export class RoburHeatmapCell extends LitElement {
 
   render() {
     const detail = this.rest ? 'descanso' : `${this.sessions} ${this.sessions === 1 ? 'sesión' : 'sesiones'}`
-    const level = Math.min(Math.max(this.sessions, 0), 4)
+    const level = Math.min(Math.max(Math.round(this.level ?? this.sessions), 0), 4)
     return html`
       <button
         type="button"

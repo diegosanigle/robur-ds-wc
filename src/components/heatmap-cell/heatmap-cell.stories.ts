@@ -5,7 +5,7 @@ import { shadowOf } from '../../stories/shadow'
 import type { RoburHeatmapCell } from './heatmap-cell'
 import './heatmap-cell'
 
-type Args = Pick<RoburHeatmapCell, 'week' | 'sessions' | 'rest' | 'current' | 'disabled'>
+type Args = Pick<RoburHeatmapCell, 'week' | 'sessions' | 'level' | 'rest' | 'current' | 'disabled'>
 
 const meta: Meta<Args> = {
   title: 'Componentes/HeatmapCell',
@@ -17,7 +17,7 @@ const meta: Meta<Args> = {
     (story) => html`<div style="display: grid; width: 16rem; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: calc(var(--spacing) * 1)">${story()}</div>`,
   ],
   render: (args) => html`
-    <robur-heatmap-cell week=${args.week} sessions=${args.sessions} ?rest=${args.rest} ?current=${args.current} ?disabled=${args.disabled}></robur-heatmap-cell>
+    <robur-heatmap-cell week=${args.week} sessions=${args.sessions} .level=${args.level} ?rest=${args.rest} ?current=${args.current} ?disabled=${args.disabled}></robur-heatmap-cell>
   `,
 }
 
@@ -31,6 +31,9 @@ export const SinSesiones: Story = { args: { sessions: 0 } }
 export const Rest: Story = { args: { rest: true, sessions: 0 } }
 
 export const Current: Story = { args: { current: true } }
+
+/** La app pondera las sesiones: dos sesiones largas pintan el nivel 4. */
+export const ConNivel: Story = { args: { sessions: 2, level: 4 } }
 
 /** Los cinco niveles, el descanso y la semana en curso. Comprueba que cada celda dice su dato en texto. */
 export const Niveles: Story = {

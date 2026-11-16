@@ -19,7 +19,7 @@ const meta: Meta<Args> = {
   tags: ['autodocs'],
   args: { children: 'Guardar sesión', onClick: fn() },
   argTypes: {
-    variant: { control: 'select', options: ['primary', 'secondary', 'danger'] },
+    variant: { control: 'select', options: ['primary', 'secondary', 'danger', 'text'] },
     type: { control: 'select', options: ['button', 'submit', 'reset'] },
     children: { control: 'text', table: { category: 'slots' } },
   },
@@ -43,6 +43,8 @@ export const Primary: Story = {}
 export const Secondary: Story = { args: { variant: 'secondary', children: 'Cancelar' } }
 
 export const Danger: Story = { args: { variant: 'danger', children: 'Borrar sesión' } }
+
+export const Text: Story = { args: { variant: 'text', children: 'Añadir ejercicio' } }
 
 export const Disabled: Story = { args: { disabled: true } }
 

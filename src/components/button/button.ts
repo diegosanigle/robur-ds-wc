@@ -15,8 +15,8 @@ export class RoburButton extends LitElement {
   /** @internal El foco pasa al `<button>` de dentro. */
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true }
 
-  /** Jerarquía visual. Solo un `primary` por pantalla. */
-  @property({ reflect: true }) variant: 'primary' | 'secondary' | 'danger' = 'primary'
+  /** Jerarquía visual. Solo un `primary` por pantalla; `text` es una acción secundaria sin caja. */
+  @property({ reflect: true }) variant: 'primary' | 'secondary' | 'danger' | 'text' = 'primary'
   /** Ocupa todo el ancho del contenedor. Atributo: `full-width`. */
   @property({ type: Boolean, reflect: true, attribute: 'full-width' }) fullWidth = false
   /** Muestra que la acción está en curso y bloquea nuevos clics. */
@@ -100,6 +100,11 @@ export class RoburButton extends LitElement {
         border: 1px solid var(--border-color-danger);
         background-color: transparent;
         color: var(--text-color-danger);
+      }
+      .text {
+        padding: calc(var(--spacing) * 2);
+        background-color: transparent;
+        color: var(--text-color-action);
       }
     `,
   ]
