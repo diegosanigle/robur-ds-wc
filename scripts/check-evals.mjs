@@ -20,6 +20,11 @@ for (const rule of ['no-hex', 'no-arbitrary', 'unknown-token', 'no-raw-control',
 if (!bad.failures.includes('no usa EmptyState')) errors.push('no detecta que falta el patrón')
 if (!good.pass) errors.push(`la respuesta buena suspende: ${good.failures.join('; ')}`)
 for (const c of cases) if (!c.uses?.length || !c.why) errors.push(`el caso ${c.id} no dice qué debe usar o por qué`)
+for (const c of cases) for (const alt of c.alternatives ?? []) if (!alt.uses?.length) errors.push(`una alternativa del caso ${c.id} no dice qué debe usar`)
+
+// Una alternativa válida también aprueba: la confirmación con el patrón ConfirmSheet (respuesta real de un agente).
+const confirm = grade(cases.find((c) => c.id === 'borrar-sesion'), readFileSync(join(root, 'evals', 'fixtures', 'buena', 'borrar-sesion.ts'), 'utf8'))
+if (!confirm.pass) errors.push(`la confirmación con ConfirmSheet suspende: ${confirm.failures.join('; ')}`)
 
 if (errors.length) {
   console.error(`Evals: ${errors.length} problema(s) en el corrector\n- ${errors.join('\n- ')}`)
