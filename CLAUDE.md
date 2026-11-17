@@ -17,7 +17,8 @@ cero es un dato, no un error.
 
 - `npm run storybook` — Storybook en local (puerto 6009)
 - `npm run cem` — genera `custom-elements.json`, la descripción de cada etiqueta que leen Storybook y las comprobaciones
-- `npm run check` — genera tokens, manifiesto y catálogo, y comprueba contraste, contratos, patrones y paridad con Figma
+- `npm run check` — genera tokens, manifiesto, catálogo y ficheros de Code Connect, y comprueba contraste, contratos, patrones, paridad con Figma y Code Connect
+- `npm run figma:connect` — publica Code Connect en Figma (necesita un plan de pago y `FIGMA_ACCESS_TOKEN`)
 - `npm test` — `check` + tests de las stories (interacción y accesibilidad)
 - `npm run build` — comprueba tipos y compila la librería
 - `npm run docs` — genera la web de documentación
@@ -28,7 +29,7 @@ cero es un dato, no un error.
 - **Si falta algo, para y propónlo.** Un token, una variante o un componente nuevo se propone con su motivo; no se improvisa.
 - **Ningún valor a mano.** En el CSS de un componente, colores, espacios, radios, sombras y tipografía salen de las variables del catálogo con `var(--…)`. Ni hex, ni nombres de color, ni primitivos (`--orange-500`). Solo los grosores de borde y de foco (1px, 2px, 3px) se escriben tal cual.
 - **El código manda.** Un cambio empieza en `tokens/` o en un contrato, y de ahí va a Figma. Nunca al revés.
-- **Lo generado no se edita:** `src/styles/tokens.css`, `custom-elements.json`, `docs/catalogo.md`, `figma/library.json` y `site/`.
+- **Lo generado no se edita:** `src/styles/tokens.css`, `custom-elements.json`, `docs/catalogo.md`, `figma/library.json`, `figma/code-connect/` y `site/`.
 - **Terminado es en verde.** Un cambio no está hecho hasta que pasan `npm test` y `npm run build`.
 - Texto de la interfaz en español. Código y nombres de props en inglés.
 
